@@ -97,12 +97,11 @@ function toDashCase(string) {
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE //
 
-    var arr = 
-
-    if(arr.charAt() == char){
-        return true;
+    //if string starts with char case insensitive
+    if(string.toLowerCase().startsWith(char.toLowerCase())){
+        return true;// return true
     }else{
-        return false;
+        return false;// else return false
     }
 
     // YOUR CODE ABOVE HERE //
@@ -123,7 +122,12 @@ function beginsWith(string, char) {
 function endsWith(string, char) {
     // YOUR CODE BELOW HERE //
 
-
+    //if string ends with char case insensitive
+    if(string.toLowerCase().endsWith(char.toLowerCase())){
+        return true;// return true
+    }else{
+        return false;// return false
+    }
 
     // YOUR CODE ABOVE HERE //
 }
@@ -135,6 +139,9 @@ function endsWith(string, char) {
  */
 function concat(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+
+    //return concat string one and string two
+    return stringOne.concat(stringTwo);
 
 
 
@@ -155,6 +162,8 @@ function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     var args = Array.from(arguments);
 
+    //join strings in args
+    return args.join('');
 
     // YOUR CODE ABOVE HERE //
 }
@@ -171,7 +180,12 @@ function join(stringOne, stringTwo) {
 function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
-
+    //if string one is longer
+    if(stringOne.length > stringTwo.length){
+        return stringOne;// return string one
+    }else{
+        return stringTwo;// else return string two
+    }
 
     // YOUR CODE ABOVE HERE //
 }
@@ -186,6 +200,20 @@ function longest(stringOne, stringTwo) {
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
+    //array
+    var arr = Array.from(arguments);
+
+    //sort
+    arr.sort();
+
+    //if strings are equal
+    if(stringOne === stringTwo){
+        return 0;//return 0
+    }else if(arr[0] === stringOne){
+        return 1;//if string one is first, return 1
+    }else if(arr[0] === stringTwo){
+        return -1;//if string two is first return -1
+    }
 
 
     // YOUR CODE ABOVE HERE //
@@ -202,6 +230,21 @@ function sortAscending(stringOne, stringTwo) {
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
+
+    //array
+    var arr = Array.from(arguments);
+
+    //sort
+    arr.sort();
+
+    //if strings are equal
+    if(stringOne === stringTwo){
+        return 0;//return 0
+    }else if(arr[0] === stringOne){
+        return -1;//if string one is first, return 1
+    }else if(arr[0] === stringTwo){
+        return 1;//if string two is first return -1
+    }
 
 
 

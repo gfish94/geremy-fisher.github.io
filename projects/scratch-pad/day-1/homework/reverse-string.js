@@ -22,7 +22,14 @@
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
     
-    
+    //define var
+    var reverse = '';
+
+    //for loop until i is less then length
+    for (var i = input.length - 1; i >= 0; i--) {
+        reverse += input[i];//add input index to reverse
+    }
+    return reverse;// return reversed string
     
     
     // YOUR CODE GOES ABOVE HERE //

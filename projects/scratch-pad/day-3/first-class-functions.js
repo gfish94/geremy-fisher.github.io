@@ -14,9 +14,11 @@
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
-    
-    
+    //return a function
+    return function(test) {
+           return base < test;//return test greater than base
+        };
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -28,7 +30,10 @@ function createGreaterThanFilter(base) {
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
-    
+    //return a function
+    return function(test){
+        return base > test;//return test less than base
+    }
     
     
     // YOUR CODE ABOVE HERE //
@@ -42,7 +47,12 @@ function createLessThanFilter(base) {
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+    //return a function
+    return function(test){
+        //force case
+        var string = test.toUpperCase();
+        return string.startsWith(startsWith);
+    }
     
     
     // YOUR CODE ABOVE HERE //

@@ -24,7 +24,20 @@
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     
-    
+      //create storage array
+  var arr = [];
+  if(start < end){
+    //loop end to start in reverse
+    for(var i = end; i >= start; i--){
+      arr.unshift(i);//if end is higher than start, unshift value to arr
+    }
+  } else{
+    //loop start to end in reverse
+    for(var i = start; i >= end; i--){
+      arr.push(i);//else, push value to arr
+    }
+  }
+  return arr;//return array
     
     
     // YOUR CODE GOES ABOVE HERE //

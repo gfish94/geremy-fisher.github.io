@@ -20,7 +20,7 @@
  *         returns the contact object if found in the contacts-list, or, 
  *         undefined if the fullName does not match any contacts in the list.
  *      4. removeContact(contact): takes a contact object to be removed from 
- *         the contact-list.
+ *         the contact-list.// research splice method
  *      5. add a printAllContactNames() Function to your makeContactList() factory. The printAllContactNames() Function should 
  *         return a String formated with all the full-names of the separated 
  *         with a line-break, like so:
@@ -35,7 +35,12 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-
+    //return object
+    return {
+        id: id, //id key = id value
+        nameFirst: nameFirst,//nameFirst key = namefirst value
+        nameLast: nameLast//nameLast key = nameLast value
+    }
 } 
 
 
@@ -43,13 +48,57 @@ function makeContactList() {
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = [];
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
+        },
+
+        //addContact api
+        addContact: function(contact){
+            contacts.push(contact);//takes contact value and adds to contact list
+        },
+
+        //findContact api
+        findContact: function(fullName){
+            //iterate contacts
+            for(var i = 0; i < contacts.length; i++){
+                //if fullname === nameFirst nameLast
+                if(fullName === contacts[i].nameFirst + ' ' + contacts[i].nameLast){
+                    return contacts[i];//return contact at index
+                } else{
+                    return undefined;//else undefined
+                }
+            }
+        },
+
+        //removeContact api
+        removeContact: function(contact){
+            //iterate
+            for(var i = 0; i < contacts.length; i++){
+                //if contact is at index
+                if(contacts[i] === contact){
+                    contacts.splice(contacts[i], 1);//remove contact
+                }
+            }
+        },
+
+        //printAllContactNames api
+        printAllContactNames: function(){
+            //create storage arr
+            var contactNames = [];
+            //create storage str
+            var joinedContacts;
+            //iterate
+            for(var i = 0; i < contacts.length; i++){
+                contactNames.push(contacts[i].nameFirst + ' ' + contacts[i].nameLast);//add contacts to storage arr
+                 joinedContacts = contactNames.join('\n');//join storage arr with line breaks
+            }
+            return joinedContacts;//return storage string
         }
+
     }
 }
 

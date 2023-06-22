@@ -114,6 +114,15 @@ function modifyStrings(strings, modify) {
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
 
+    //loop over strings
+    for(var i = 0; i <strings.length; i++){
+        //if string fails test
+        if(!test(strings[i])){
+            return false;//return false
+        }
+    }
+    return true;//return true if all tests pass
+    
     
     // YOUR CODE ABOVE HERE //
 }

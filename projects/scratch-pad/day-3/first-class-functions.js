@@ -49,11 +49,12 @@ function createStartsWithFilter(startsWith) {
     
     //return a function
     return function(test){
-        //force case
-        var string = test.toUpperCase();
-        return string.startsWith(startsWith);
-    }
-    
+        //force case on startsWith
+        var startsWithCased = startsWith.toUpperCase();
+        //force case on test
+        var testCased = test.toUpperCase();
+        return testCased.startsWith(startsWithCased);//return if test starts with startsWith
+      }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -66,7 +67,14 @@ function createStartsWithFilter(startsWith) {
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
     
-    
+        //return a function
+        return function(test){
+            //force case on endsWith
+            var endsWithCased = endsWith.toUpperCase();
+            //force case on test
+            var testCased = test.toUpperCase();
+            return testCased.endsWith(endsWithCased);//return if test ends with endsWith
+          }
     
     
     // YOUR CODE ABOVE HERE //

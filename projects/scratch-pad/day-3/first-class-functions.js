@@ -89,10 +89,16 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+
+    //create storage array
+    var modified = [];
+
+    //loop over strings
+    for(var i = 0; i < strings.length; i++){
+      modified.push(modify(strings[i]));//push modified strings into storage array
+    }
+    return modified;//return array
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -107,8 +113,7 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
-    
+
     
     
     // YOUR CODE ABOVE HERE //

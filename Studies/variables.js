@@ -29,3 +29,13 @@ color = 'blue';
 console.log(color);//prints => blue
 newColor = 'purple';
 console.log(newColor);//prints => purple
+
+// 2. var, let, const //
+
+//var
+//
+var variable1 = 'variable';
+
+//let
+//
+let variable2 = 'variable2'

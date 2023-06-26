@@ -1,7 +1,7 @@
 # geremy-fisher.github.io
 
 # How to Install Projects Using os install
-1) In terminal, type = code ~/.bashrc
+1) In terminal, type => code ~/.bashrc
 2) On line 4 of bashrc file, type => export CHE_PROJECTS_ROOT=/workspace
 3) Exit out of bashrc file
 4) Kill the terminal

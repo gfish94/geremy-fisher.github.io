@@ -12,19 +12,27 @@
 // Step 1 - Object Creation //////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+var animal = {};
+animal.species = 'cat';
+animal['name'] = 'Jasper';
+animal.noises = [];
 
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Array Creation ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+var noises = [];
+noises[0] = 'meow';
+noises.push('hiss');
+noises.unshift('chirp');
+noises[noises.length] = 'purr';
 
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Combining Step 1 and 2 ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+animal['noises'] = noises;
+animal.noises.push('howl');
 
 /* *******************************************************************
  * Step 4 - Review
@@ -49,13 +57,46 @@
 // Step 6 - A Collection of Animals //////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+var animals = [];
+animals.push(animal);
+
+var duck ={
+  species: 'duck',
+  name: 'Jerome',
+  noises: ['quack', 'honk', 'sneeze', 'woosh']
+};
+
+animals.push(duck);
+
+var dog ={
+  species: 'dog',
+  name: 'Elsa',
+  noises: ['bark', 'whine']
+};
+
+var frog ={
+  species: 'frog',
+  name: 'Kermit',
+  noises: ['croak, ribbit']
+};
+
+animals.push(dog);
+animals.push(frog);
+
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 7 - Making Friends ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+var friends = [];// arr creates a simple list of values
 
+function getRandom(arr){
+ return arr[Math.floor(Math.random() * arr.length)];
+}
+
+friends.push(getRandom(animals).name);
+animals[0]['friends'] = friends;
 
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and

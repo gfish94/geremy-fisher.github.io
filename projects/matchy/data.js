@@ -92,11 +92,11 @@ animals.push(frog);
 var friends = [];// arr creates a simple list of values
 
 function getRandom(arr){
- return arr[Math.floor(Math.random() * arr.length)];
+ return arr[Math.floor(Math.random())];
 }
 
 friends.push(getRandom(animals).name);
-animals[0]['friends'] = friends;
+animal['friends'] = friends;
 
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and

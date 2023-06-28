@@ -50,7 +50,22 @@ function remove(arr, name){
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+function add(arr, obj){
+    if(obj.name.length < 0 || obj.species.length < 0){
+        return;//check name and species for length
+    }
+    let unique = false;
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i].name === obj.name){
+            unique = true;
+            break;
+        }
+    }
+    if(unique){
+        return;
+    }//check name for uniqueness 
+    arr.push(obj);// if all test pass push obj to arr
+}
 
 /**
  * You did it! You're all done with Matchy!

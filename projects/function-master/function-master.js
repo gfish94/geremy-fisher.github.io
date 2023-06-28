@@ -3,7 +3,13 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-
+    //create storage arr
+    let arr = [];
+    //for in loop
+    for(let key in object){
+        arr.push(object[key])//push values into arr
+    }
+    return arr;//return arr
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -11,7 +17,13 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
-
+    //storage arr
+    let arr = [];
+    //for in loop
+    for(let key in object){
+        arr.push(key);//push keys
+    }
+    return arr.join(' ');//return joined with space
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -19,7 +31,15 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    //storage arr
+    let arr = [];
+    //for in loop
+    for(let key in object){
+        if(typeof object[key] === 'string'){
+            arr.push(object[key]);//if value is a string push to arr
+        }
+    }
+    return arr.join(' ')//join with spaces
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -27,7 +47,12 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    //if collection is an array
+    if(typeof collection === 'object' && Array.isArray(collection)){
+        return 'array';// return array
+    } else{
+        return 'object';// else return object
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,7 +60,9 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    //return string with first letter capitalized plus the rest of the string
+    return string.charAt(0).toUpperCase() + string.slice(1);
+
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,7 +70,14 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    //split string
+    let arr = string.split(' ');
+    //loop
+    for(let i = 0; i < arr.length; i++){
+        //capitalize the first letter of each word
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr.splice(1);
+    }
+    return arr.join(' ')// return array joined
 }
 
 //////////////////////////////////////////////////////////////////////

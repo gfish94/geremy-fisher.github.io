@@ -68,48 +68,59 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 // Function 6 - Capitalize All Words /////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
 function capitalizeAllWords(string) {
     //split string
     let arr = string.split(' ');
+  let arr2 = [];
     //loop
     for(let i = 0; i < arr.length; i++){
         //capitalize the first letter of each word
-        arr[i] = arr[i].charAt(0).toUpperCase() + arr.splice(1);
+       arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+      arr2.push(arr[i]);
     }
-    return arr.join(' ')// return array joined
+    return arr2.join(' ')// return array joined
 }
-
 //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
-}
-
+    //capitalize object name
+    let name = object.name.charAt(0).toUpperCase() + object.name.slice(1);  
+    return 'Welcome ' + name + '!';// return message
+  }
 //////////////////////////////////////////////////////////////////////
 // Function 8 - Profile Info /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-
-}
-
+    //capitalize name
+    let name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    //capitalize species
+    let species = object.species.charAt(0).toUpperCase() + object.species.slice(1);
+    return name + ' is a ' + species;
+  }
+  
 //////////////////////////////////////////////////////////////////////
 // Function 9 - Maybe Noises /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function maybeNoises(object) {
 
-}
+function maybeNoises(object) {
+    //if noises is an array and has a value
+    if(Array.isArray(object.noises) && object.noises.length > 0){
+      return object.noises.join(' ');// return joined with spaces
+    } else{
+      return 'there are no noises';//else return message
+    }
+  }
 
 //////////////////////////////////////////////////////////////////////
 // Function 10 - Has Words ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+  return string.includes(word);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -117,25 +128,41 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    object.friends.push(name);
+  return object;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 12 - Is Friend ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+
 function isFriend(name, object) {
-
-}
-
+    //if friends is an array
+    if(Array.isArray(object.friends)){
+      return object.friends.includes(name);//check friends includes name
+    }else {
+      return false;//else false
+    }
+  }
+  
 //////////////////////////////////////////////////////////////////////
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
-}
-
+    //storage arr
+    let unfriend = [];
+    //loop
+    for(let i = 0; i < array.length; i++){
+      //if friends !include name and array.name != name  
+      if(!array[i].friends.includes(name) && array[i].name !== name){
+          unfriend.push(array[i].name);//push array.name to arr
+      }
+    }
+    return unfriend;//return arr
+  }
+  
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////

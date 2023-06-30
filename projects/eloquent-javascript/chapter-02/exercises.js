@@ -41,14 +41,14 @@ function drawChessboard(num){
     //inner loop
     for (let j = 0; j < num; j++) {
       if ((i + j) % 2 == 0){
-        board += " ";//if i + j is even, add space
+        board += ' ';//if i + j is even, add space
       }else{
-      board += "#";//else add #
+      board += '#';//else add #
       }
     }
-  board += "\n";//end of line break
+  board += '\n';//end of line break
   }
-  return board;//return board
+  console.log(board);//print board
 }
 
 ////////////////////////////////////////////////////////////////////////////////

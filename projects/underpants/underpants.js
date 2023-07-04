@@ -75,8 +75,26 @@ _.typeOf = function(value){
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 
-_.first = function(array, num){
-
+_.first = function(array, n){
+    //output
+    let output = [];
+    if(!Array.isArray(array)){
+        return output;//if array is not an array, return output
+    }
+    if(isNaN(n)){
+        return array[0];//if num is not a number, return first value in array
+    }
+    if(Number.isInteger(n) && n < array.length){//if num is positive in and num is less than array length
+        for(let i = 0; i < n; i++){
+            output.push(array[i]);//push first n items of array to output
+        }
+        return output;//return output
+    } else {
+        for(let i = 0; i < array.length; i++){
+            output.push(array[i]);//else push all items in array to output
+        }
+        return output;//return output
+    }
 }
 
 /** _.last
@@ -97,7 +115,13 @@ _.first = function(array, num){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-_.last = function(array, num){
+_.last = function(array, n){
+    //output
+    let output = [];
+    if(!Array.isArray(array)){
+        return output;// if array is not an array return output
+    }
+
     
 }
 
@@ -274,6 +298,52 @@ _.last = function(array, num){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+// _.every = function(collection, func){
+//     //determine if collection is array
+//     if(Array.isArray(collection)){
+//         //determine if function wasn't provided
+//         if(!func){
+//             //loop
+//             for(let i = 0; i < collection.length; i++){
+//                 if(!collection[i]){
+//                     return false;//if item is falsey, return false
+//                 } else{
+//                     return true;//else true
+//                 }
+//             }
+//         } else{//else it was 
+//             //loop
+//             for(let i = 0; i < collection.length; i++){
+//                 if(!func(collection[i]), i , collection){
+//                     return false;//if result of invoking func is falsey, return false
+//                 } else{
+//                     return true;//else true
+//                 }
+//             }
+//         }
+//     } else {//else it is an object
+//         //determine if function wasn't provided
+//         if(!func){
+//             //loop
+//             for(let key in collection){
+//                 if(!collection[key] || !key){//if
+//                     return false;
+//                 } else{
+//                     return true;//else true
+//                 }
+//             }
+//         }else{//else it was
+//             //loop
+//             for(let key in collection){
+//                 if(!func(key), collection[key], collection){
+//                     return false;//if result of invoking is falsey, return false
+//                 } else{
+//                     return true;//else true
+//                 }
+//             }
+//         }
+//     }
+// }
 
 /** _.some
 * Arguments:

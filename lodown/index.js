@@ -42,7 +42,7 @@ module.exports.identity = identity;
  * @returns {string} :Function returns a string of the values datatype
  */
 
-_.typeOf = function(value){
+function typeOf(value) {
     if(typeof value !== 'object'){
         return typeof value;//if typeof does not return object, return typeof
     } else if(Array.isArray(value)){
@@ -53,3 +53,33 @@ _.typeOf = function(value){
         return 'object';//else return object
     }
 }
+module.exports.typeOf = typeOf;
+
+/**
+ * 
+ * 
+ * 
+ */
+
+function first(array, n){
+    //output
+    let output = [];
+    if(!Array.isArray(array)){
+        return output;//if array is not an array, return output
+    }
+    if(isNaN(n)){
+        return array[0];//if num is not a number, return first value in array
+    }
+    if(Number.isInteger(n) && n < array.length){//if num is positive in and num is less than array length
+        for(let i = 0; i < n; i++){
+            output.push(array[i]);//push first n items of array to output
+        }
+        return output;//return output
+    } else {
+        for(let i = 0; i < array.length; i++){
+            output.push(array[i]);//else push all items in array to output
+        }
+        return output;//return output
+    }
+}
+module.exports.first = first;

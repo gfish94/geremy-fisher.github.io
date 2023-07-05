@@ -23,7 +23,7 @@ var _ = {};
 
 _.identity = function(value){
     return value;
-}
+},
 
 /** _.typeOf
 * Arguments:
@@ -84,17 +84,15 @@ _.first = function(array, n){
     if(isNaN(n)){
         return array[0];//if num is not a number, return first value in array
     }
-    if(Number.isInteger(n) && n < array.length){//if num is positive in and num is less than array length
+    if(n < array.length){//if num is positive in and num is less than array length
         for(let i = 0; i < n; i++){
             output.push(array[i]);//push first n items of array to output
         }
         return output;//return output
     } else {
-        for(let i = 0; i < array.length; i++){
-            output.push(array[i]);//else push all items in array to output
-        }
-        return output;//return output
+        return array;
     }
+        return output;//return output
 }
 
 /** _.last
@@ -116,13 +114,21 @@ _.first = function(array, n){
 */
 
 _.last = function(array, n){
-    //output
-    let output = [];
     if(!Array.isArray(array)){
-        return output;// if array is not an array return output
+        return [];// if array is not an array return empty array
     }
-
-    
+    if(isNaN(n)){
+        let lastElement = array[array.length -1];
+        return lastElement;//if n is not a number, return last element
+    }
+    if(n < 0){
+        return [];//if n is negative, return empty array
+    }
+    if(n < array.length){
+        return array.slice(-n);//if n is less than array length, return the last n elements of array
+    } else{
+        return array;//else return array
+    }
 }
 
 /** _.indexOf
@@ -141,6 +147,15 @@ _.last = function(array, n){
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function(array, value){
+    //loop
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === value){
+            return i;// if value is at index, return index
+        }
+    }
+    return -1;// else return -1
+}
 
 /** _.contains
 * Arguments:
@@ -156,6 +171,16 @@ _.last = function(array, n){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(array, value){
+    //loop
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === value){
+            return true;//if value is at index, return true
+        }
+    }
+    return false;//else return false
+}
 
 
 /** _.each
@@ -174,17 +199,18 @@ _.last = function(array, n){
 *      -> should log "a" "b" "c" to the console
 */
 
-// _.each = function(collection, func){
-//     //if collection is an array
-//     if(Array.isArray(collection)){
-//         //loop
-//         for(let i = 0; collection.length; i++){
-//             func(collection[i], i, collection);
-//         }
-//     } else{ //else collection is an object
-
-//     }
-// }
+_.each = function(collection, action){
+    //if collection is array
+    if(Array.isArray(collection)) {
+        for(var i = 0; i < collection.length; i++) {
+            action(collection[i], i, collection);//pass values to func
+        }
+    } else {//else obj
+        for (var key in collection) {
+            action(collection[key], key, collection);//pass properties to func
+        }
+    }
+}
 
 /** _.unique
 * Arguments:
@@ -195,6 +221,18 @@ _.last = function(array, n){
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+
+_.unique = function(array){
+    //storage
+    let unique = [];
+    //loop
+    for(let i = 0; i < array.length; i++){
+        if(!unique.includes(array[i])){
+            unique.push(array[i]);//if unique does not include value, push value to unique
+        }
+    }
+    return unique;// return unique
+}
 
 
 /** _.filter
@@ -410,4 +448,4 @@ if((typeof process !== 'undefined') &&
    (typeof process.versions.node !== 'undefined')) {
     // here, export any references you need for tests //
     module.exports = _;
-}
+   }

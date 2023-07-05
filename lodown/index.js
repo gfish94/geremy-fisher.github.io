@@ -59,6 +59,7 @@ module.exports.typeOf = typeOf;
  * 
  * 
  * 
+ * 
  */
 
 function first(array, n){
@@ -83,3 +84,52 @@ function first(array, n){
     }
 }
 module.exports.first = first;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+function last(array, n){
+    if(!Array.isArray(array)){
+        return [];// if array is not an array return empty array
+    }
+    if(isNaN(n)){
+        let lastElement = array[array.length -1];
+        return lastElement;//if n is not a number, return last element
+    }
+    if(n < 0){
+        return [];//if n is negative, return empty array
+    }
+    if(n < array.length){
+        return array.slice(-n);//if n is less than array length, return the last n elements of array
+    } else{
+        return array;//else return array
+    }
+}
+module.exports.last = last;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+function indexOf(array, value){
+    //loop
+    for(let i = 0; i < array.length; i++){
+        if(array[i] === value){
+            return i;// if value is at index return, index
+        }
+    }
+    return -1;// else return -1
+}
+module.exports.indexOf = indexOf;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ */

@@ -251,6 +251,17 @@ _.unique = function(array){
 *   use _.each in your implementation
 */
 
+_.filter = function(array, action){
+    //output
+    let output = [];
+    //loop
+    for(let i = 0; i < array.length; i++){
+        if(action(array[i], i, array)){//if calling func is truthy
+            output.push(array[i]);// push value
+        }
+    }
+    return output;//return output
+}
 
 /** _.reject
 * Arguments:
@@ -264,6 +275,18 @@ _.unique = function(array){
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = function(array, action){
+    //output
+    let output = [];
+    //loop
+    for(let i = 0; i < array.length; i++){
+        if(!action(array[i], i, array)){//if calling is falsey
+            output.push(array[i]);// push value
+        }
+    }
+    return output;// return output
+}
 
 
 /** _.partition
@@ -285,6 +308,18 @@ _.unique = function(array){
 }
 */
 
+_.partition = function(array, action){
+    //output
+    let output = [];
+    //filtered
+    let filtered = _.filter(array, action);
+    //rejects
+    let rejected = _.reject(array, action);
+    //push
+    output.push(filtered, rejected);
+    return output;// return output
+}
+
 
 /** _.map
 * Arguments:
@@ -302,6 +337,22 @@ _.unique = function(array){
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(collection, action){
+    //output
+    let output = [];
+    //if collection is array
+    if(Array.isArray(collection)) {
+        for(var i = 0; i < collection.length; i++) {
+            output.push(action(collection[i], i, collection));//push func pass to output
+        }
+    } else {//else obj
+        for (var key in collection) {
+            output.push(action(collection[key], key, collection));//push func past to output
+        }
+    }
+    return output;// return output
+}
+
 
 /** _.pluck
 * Arguments:
@@ -314,6 +365,9 @@ _.unique = function(array){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+_.pluck = function(arr, prop){
+    return _.map(arr, (obj) => obj[prop]);
+}
 
 /** _.every
 * Arguments:
@@ -336,52 +390,52 @@ _.unique = function(array){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
-// _.every = function(collection, func){
-//     //determine if collection is array
-//     if(Array.isArray(collection)){
-//         //determine if function wasn't provided
-//         if(!func){
-//             //loop
-//             for(let i = 0; i < collection.length; i++){
-//                 if(!collection[i]){
-//                     return false;//if item is falsey, return false
-//                 } else{
-//                     return true;//else true
-//                 }
-//             }
-//         } else{//else it was 
-//             //loop
-//             for(let i = 0; i < collection.length; i++){
-//                 if(!func(collection[i]), i , collection){
-//                     return false;//if result of invoking func is falsey, return false
-//                 } else{
-//                     return true;//else true
-//                 }
-//             }
-//         }
-//     } else {//else it is an object
-//         //determine if function wasn't provided
-//         if(!func){
-//             //loop
-//             for(let key in collection){
-//                 if(!collection[key] || !key){//if
-//                     return false;
-//                 } else{
-//                     return true;//else true
-//                 }
-//             }
-//         }else{//else it was
-//             //loop
-//             for(let key in collection){
-//                 if(!func(key), collection[key], collection){
-//                     return false;//if result of invoking is falsey, return false
-//                 } else{
-//                     return true;//else true
-//                 }
-//             }
-//         }
-//     }
-// }
+_.every = function(collection, func){
+    //determine if collection is array
+    if(Array.isArray(collection)){
+        //determine if function wasn't provided
+        if(!func){
+            //loop
+            for(let i = 0; i < collection.length; i++){
+                if(!collection[i]){
+                    return false;//if item is falsey, return false
+                } else{
+                    return true;//else true
+                }
+            }
+        } else{//else it was 
+            //loop
+            for(let i = 0; i < collection.length; i++){
+                if(!func(collection[i]), i , collection){
+                    return false;//if result of invoking func is falsey, return false
+                } else{
+                    return true;//else true
+                }
+            }
+        }
+    } else {//else it is an object
+        //determine if function wasn't provided
+        if(!func){
+            //loop
+            for(let key in collection){
+                if(!collection[key] || !key){//if
+                    return false;
+                } else{
+                    return true;//else true
+                }
+            }
+        }else{//else it was
+            //loop
+            for(let key in collection){
+                if(!func(key), collection[key], collection){
+                    return false;//if result of invoking is falsey, return false
+                } else{
+                    return true;//else true
+                }
+            }
+        }
+    }
+}
 
 /** _.some
 * Arguments:

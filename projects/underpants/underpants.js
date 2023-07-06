@@ -547,10 +547,10 @@ _.reduce = function(array, action, seed) {
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-_.extend = function(target) {
+_.extend = function(target, ...sources) {
     //loop
-    for(let i = 0; i < arguments.length; i++){
-        Object.assign(target, arguments[i]);//copy all values from sources to target
+    for(let i = 0; i < sources.length; i++){
+        Object.assign(target, sources[i]);//copy all values from sources to target
     }
     return target;//return target
 }

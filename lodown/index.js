@@ -217,3 +217,140 @@ function pluck(arr, prop){
     return _.map(arr, (obj) => obj[prop]);
 }
 module.exports.pluck = pluck;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+function every(collection, func){
+    if(Array.isArray(collection)){
+        //determine if function wasn't provided
+        if(!func){
+            //loop
+            for(let i = 0; i < collection.length; i++){
+                if(!collection[i]){
+                    return false;//if item is falsey, return false
+                } else{
+                    return true;//else true
+                }
+            }
+        } else{//else it was 
+            //loop
+            for(let i = 0; i < collection.length; i++){
+                if(!func(collection[i], i , collection)){
+                    return false;//if result of invoking func is falsey, return false
+                }
+            }
+          return true;//else return true
+        }
+    } else {//else it is an object
+        //determine if function wasn't provided
+        if(!func){
+            //loop
+            for(let key in collection){
+                if(!collection[key] || !key){//if
+                    return false;
+                } else{
+                    return true;//else true
+                }
+            }
+        }else{//else it was
+            //loop
+            for(let key in collection){
+                if(func(key, collection[key], collection)){
+                    return false;//if result of invoking is falsey, return false
+                }
+            }
+            return true;//else true
+        }
+    }
+}
+module.exports.every = every;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+function some(collection, action){
+    if(Array.isArray(collection)){
+        //determine if function wasn't provided
+        if(!action){
+            //loop
+            for(let i = 0; i < collection.length; i++){
+                if(collection[i]){
+                    return true;//if item is truthy, return true
+                }
+                return false;//else false
+            }
+        } else{//else it was 
+            //loop
+            for(let i = 0; i < collection.length; i++){
+                if(action(collection[i], i , collection)){
+                    return true;//if result of invoking func is truthy, return true
+                }
+            }
+            return false;//else false
+        }
+    } else {//else it is an object
+        //determine if function wasn't provided
+        if(!action){
+            //loop
+            for(let key in collection){
+                if(collection[key] || key){//if item is truthy, return true
+                    return true;
+                }
+                return false;// else false
+            }
+        }else{//else it was
+            //loop
+            for(let key in collection){
+                if(!action(key, collection[key], collection)){
+                    return true;//if result of invoking is truthy, return true
+                }
+            }
+            return false;// else false
+        }
+    }
+}
+module.exports.some = some;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+function reduce(array, action, seed) {
+    //assign true to first
+    let first = true;
+    //loop
+    for (let i = 0; i < array.length; i++) {
+      if (first === true && seed === undefined) {// if first is true and seed is undefined
+        seed = array[i];//assign first array element to seed
+      } else {
+        seed = action(seed, array[i], i, array);//else assign seed value of passing action
+      }
+        first = false;//assign first to false
+    }
+    return seed;// return final result
+}
+module.exports.reduce = reduce;
+
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+function extend(target) {
+    //loop
+    for(let i = 0; i < arguments.length; i++){
+        Object.assign(target, arguments[i]);//copy all values from sources to target
+    }
+    return target;//return target
+}
+module.exports.extend = extend;

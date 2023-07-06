@@ -391,7 +391,6 @@ _.pluck = function(arr, prop){
 */
 
 _.every = function(collection, func){
-    //determine if collection is array
     if(Array.isArray(collection)){
         //determine if function wasn't provided
         if(!func){
@@ -406,12 +405,11 @@ _.every = function(collection, func){
         } else{//else it was 
             //loop
             for(let i = 0; i < collection.length; i++){
-                if(!func(collection[i]), i , collection){
+                if(!func(collection[i], i , collection)){
                     return false;//if result of invoking func is falsey, return false
-                } else{
-                    return true;//else true
                 }
             }
+          return true;//else return true
         }
     } else {//else it is an object
         //determine if function wasn't provided
@@ -427,12 +425,11 @@ _.every = function(collection, func){
         }else{//else it was
             //loop
             for(let key in collection){
-                if(!func(key), collection[key], collection){
+                if(func(key, collection[key], collection)){
                     return false;//if result of invoking is falsey, return false
-                } else{
-                    return true;//else true
                 }
             }
+            return true;//else true
         }
     }
 }
@@ -458,6 +455,47 @@ _.every = function(collection, func){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collection, action){
+    if(Array.isArray(collection)){
+        //determine if function wasn't provided
+        if(!action){
+            //loop
+            for(let i = 0; i < collection.length; i++){
+                if(collection[i]){
+                    return true;//if item is truthy, return true
+                }
+                return false;//else false
+            }
+        } else{//else it was 
+            //loop
+            for(let i = 0; i < collection.length; i++){
+                if(action(collection[i], i , collection)){
+                    return true;//if result of invoking func is truthy, return true
+                }
+            }
+            return false;//else false
+        }
+    } else {//else it is an object
+        //determine if function wasn't provided
+        if(!action){
+            //loop
+            for(let key in collection){
+                if(collection[key] || key){//if item is truthy, return true
+                    return true;
+                }
+                return false;// else false
+            }
+        }else{//else it was
+            //loop
+            for(let key in collection){
+                if(!action(key, collection[key], collection)){
+                    return true;//if result of invoking is truthy, return true
+                }
+            }
+            return false;// else false
+        }
+    }
+}
 
 /** _.reduce
 * Arguments:
@@ -478,6 +516,21 @@ _.every = function(collection, func){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, action, seed) {
+    //assign true to first
+    let first = true;
+    //loop
+    for (let i = 0; i < array.length; i++) {
+      if (first === true && seed === undefined) {// if first is true and seed is undefined
+        seed = array[i];//assign first array element to seed
+      } else {
+        seed = action(seed, array[i], i, array);//else assign seed value of passing action
+      }
+        first = false;//assign first to false
+    }
+    return seed;// return final result
+  }
+  
 
 /** _.extend
 * Arguments:
@@ -494,6 +547,13 @@ _.every = function(collection, func){
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
+_.extend = function(target) {
+    //loop
+    for(let i = 0; i < arguments.length; i++){
+        Object.assign(target, arguments[i]);//copy all values from sources to target
+    }
+    return target;//return target
+}
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////

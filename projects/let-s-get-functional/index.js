@@ -22,16 +22,32 @@ var _ = require('underbar');
  */
 
 var maleCount = function(array) {
+    let males = _.filter(array, function(customer){
+        return customer.gender === 'male';
+    });// filter male customer objects into array
+
+    return males.length;//return length of array
+};
+
+var femaleCount = function(array){
+    let females = _.reduce(array, (accumulator, current) => {
+        //if current object is female
+        if(current.gender === 'female'){
+            accumulator ++;//increment count
+        }
+        return accumulator;//return count
+    }, 0);
+    return females;
+};
+
+var oldestCustomer = function(array){
 
 };
 
-var femaleCount;
-
-var oldestCustomer;
 
 var youngestCustomer;
 
-var averageBalance;
+var averageBalance;// SKIP
 
 var firstLetterCount;
 

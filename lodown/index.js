@@ -326,17 +326,21 @@ module.exports.some = some;
  */
 function reduce(array, action, seed) {
     //assign true to first
-    let first = true;
-    //loop
-    for (let i = 0; i < array.length; i++) {
-      if (first === true && seed === undefined) {// if first is true and seed is undefined
-        seed = array[i];//assign first array element to seed
-      } else {
-        seed = action(seed, array[i], i, array);//else assign seed value of passing action
+    let result;
+    if (seed === undefined) {//seed is undefined
+        result = array[0];//assign first array element to result
+        //loop from index 1
+        for (let i = 1; i < array.length; i++) {
+            result = action(result, array[i], i, array);//else assign result value of passing action
+          }
+    } else {
+        result = seed;// else assign result to seed
+        //loop
+        for (let i = 0; i < array.length; i++) {
+        result = action(result, array[i], i, array);//else assign result value of passing action
       }
-        first = false;//assign first to false
     }
-    return seed;// return final result
+    return result;// return final result
 }
 module.exports.reduce = reduce;
 

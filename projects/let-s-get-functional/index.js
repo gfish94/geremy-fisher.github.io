@@ -30,12 +30,12 @@ var maleCount = function(array) {
 };
 
 var femaleCount = function(array){
-    let females = _.reduce(array, (accumulator, current) => {
+    let females = _.reduce(array, (acc, current) => {
         //if current object is female
         if(current.gender === 'female'){
-            accumulator ++;//increment count
+            acc ++;//increment count
         }
-        return accumulator;//return count
+        return acc;//return count
     }, 0);
     return females;
 };
@@ -44,7 +44,7 @@ var oldestCustomer = function(array){
     let oldest = _.reduce(array, (acc, current) => {
         if (acc.age > current.age){// if acc.age is greater than current
             return acc;// return acc to oldest
-        } else {
+        } else{
             return current;// else return current
         }
     });
@@ -54,13 +54,34 @@ var oldestCustomer = function(array){
 
 
 
-var youngestCustomer;
+var youngestCustomer = function(array){
+    let youngest = _.reduce(array, (acc, current) => {
+        if(acc.age < current.age){// if acc.age is less than current
+            return acc;// return acc to youngest
+        } else{
+            return current;// else return current
+        }
+    });
+
+    return youngest.name;// return youngest name
+};
 
 var averageBalance;// SKIP
 
-var firstLetterCount;
+var firstLetterCount = function(array, letter){
+    //count
+    let count = 0;
+    //forEach
+    _.each(array, (current) => {
+        if(current.name.charAt(0).toUpperCase() === letter.toUpperCase()){
+            count ++;//if first letter is letter, increment count
+        }
+    });
+    return count;// return count
+};
 
-var friendFirstLetterCount;
+var friendFirstLetterCount = function(array, customer, letter){
+};
 
 var friendsCount;
 

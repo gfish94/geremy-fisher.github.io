@@ -66,7 +66,21 @@ var youngestCustomer = function(array){
     return youngest.name;// return youngest name
 };
 
-var averageBalance;// SKIP
+var averageBalance = function(array){
+
+    let sum = array.reduce((acc, current)=>{
+        acc += parseFloat(current.balance.replace(/[$,]/g, ''));
+        return acc;
+    }, 0)// find sum of all balances
+
+    let num = array.filter((current)=>{
+        if(current.balance){
+            return true;
+        }//find num of elements with balances
+    })
+
+    return sum / num.length;// return avg
+};
 
 var firstLetterCount = function(array, letter){
     //count
@@ -100,12 +114,16 @@ var friendFirstLetterCount = function(array, customer, letter){
 };
 
 var friendsCount = function(array, name){
-    
+
 };
 
-var topThreeTags;
+var topThreeTags = function(array){
 
-var genderCount;
+};
+
+var genderCount = function(array){
+    
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

@@ -90,11 +90,15 @@ var exponent = function(base, exp) {
   if(exp === 0){
     return 1;
   }
-
-  //recursion 
-  if(exp > 0 && exp % 2 === 0){
-    y = base 
+  //recursion
+  if(exp < 0){
+    return 1 / exponent(base, - exp);// if exp is negative, return 1 divided by func call with positive exp
   }
+
+  if(exp > 0){
+  return base * exponent(base, --exp);//if exp is pos, return base time func call with exponent decremented
+  }
+
 };
 
 // 8. Determine if a number is a power of two.
@@ -102,14 +106,32 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //base
+  if(n === 1){
+    return true;// if n is 1, return true
+  }
+  if(n < 1){
+    return false;// if n is less than 1, return false
+  }
+  //recursion
+  return powerOfTwo(n / 2);// return func call with n divided by 2
 };
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+  //base
+  if(string.length <= 1){
+    return string;//if string.lenght <= 1, return string
+  }
+  //recursion
+  //return last char of string + func call with substring of string without the last char
+  return string.charAt(string.length - 1) + reverse(string.substring(0, string.length - 1));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  //force case
+  let str = string.toUpperCase();
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the

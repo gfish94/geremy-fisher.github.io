@@ -114,13 +114,36 @@ var friendFirstLetterCount = function(array, customer, letter){
 };
 
 var friendsCount = function(array, name){
+    let arr = array.map(customer => {
+        return {name: customer.name, friends: customer.friends.map(friend => friend.name)}
+    });// map customers
+    
+    let friends = arr.filter(customer => customer.friends.includes(name));//filter for friends with names
 
+    return friends.map(friend => friend.name);//return array of all customers with name in friends
 };
+
 
 var topThreeTags = function(array){
-
-};
-
+    //get flat map of tags
+    let tags = array.map(customer => customer.tags).flat();
+  
+    //init counter obj
+    let counter = {};
+  
+    //for each tag, add a key to counter with count of the occurences in tags array
+    tags.forEach(tag => {
+      if(counter[tag]){
+        counter[tag] += 1;
+      } else{
+          counter[tag] = 1;
+      }
+    });
+    
+  return Object.keys(counter).filter(x => {
+        return counter[x] === Math.max.apply(null, Object.values(counter));});//filter through counter object and return an array of the keys with the highest values
+  };
+  
 var genderCount = function(array){
     
 };

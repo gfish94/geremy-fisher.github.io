@@ -69,15 +69,30 @@ function reverseArrayInPlace(array) {
 ////////////////////////////////////////////////////////////////////////////////
 
 function arrayToList(array) {
+  let rest = null;
 
+  for(let i = array.length -1; i >= 0; i--){
+    rest = {value: array[i], rest: rest};
+  }
+  return rest;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
+function listToArray(list, output=[]) {
+  //base
+  if(list.rest === null){
+    output.push(list.value);//if rest is null, push last value
+    return output;//return
+  }
+  //recursion
+    //grab current value at [value] and add to array
+  output.push(list.value);
 
+  //return func call with rest and output
+  return listToArray(list.rest, output);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

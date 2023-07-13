@@ -130,11 +130,23 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-  //force case
-  let str = string.toUpperCase().replaceAll(' ', '');
-  //base
 
+  //force case
+  let str = string.toLowerCase();
+
+  //force alphabet
+  str = str.replace(/\s/g, '');
+
+  //base
+  if (str.length <= 1){
+    return true;
+  }
+  if (str[0] !== str[str.length -1]){
+    return false;
+  }
   //recursion
+  //call func with sliced string
+  return palindrome(str.slice(1, -1));
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the

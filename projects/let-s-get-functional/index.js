@@ -145,7 +145,28 @@ var topThreeTags = function(array){
   };
   
 var genderCount = function(array){
-    
+    //output
+    let output = {
+        male: array.reduce((acc, current) => {//reduce
+            if(current.gender === 'male'){
+                acc++;//if gender is male, increment acc
+            }
+            return acc;// return acc
+        }, 0),
+        female: array.reduce((acc, current) => {//reduce
+            if(current.gender === 'female'){
+                acc++;//if gender is female, increment acc
+            }
+            return acc;// return acc
+        }, 0),
+        'non-binary': array.reduce((acc, current) => {
+            if(current.gender === 'non-binary'){
+                acc++;//if gender is non-binary, increment acc
+            }
+            return acc;// return acc
+        }, 0)
+    }
+    return output;// return
 };
 
 //////////////////////////////////////////////////////////////////////

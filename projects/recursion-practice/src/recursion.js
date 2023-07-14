@@ -161,6 +161,15 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+  if (y === 0) {
+    return 0;
+  }
+  if (y > 0) {
+    return (x + multiply(x, y - 1))
+  }
+  if (y < 0) {
+    return -multiply(x, -y)
+  }
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -182,15 +191,38 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if(str1.length === 0 && str2.length === 0){
+    return true;// if strings are emty return true
+  }
+
+  if(str1[0] === str2[0]){//if first char is equal
+  return compareStr(str1.substring(1), str2.substring(1));//return func call with substrings
+  } else{
+    return false;// else return false
+  }
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(str, array=[]){
+  //base
+  if(str.length === 0){
+    return array;// if string is empty return array
+  }
+  //recursion
+  array.push(str.charAt(0))//push char to array
+  return createArray(str.substring(1), array);// return func call with substring and array
 };
 
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+var reverseArr = function (array, rev=[]) {
+  //base
+  if(array.length === 0){
+    return rev;//if arr is empty, return rev
+  }
+  //recursion
+  rev.unshift(array[0]);//unshift first element to rev
+  return reverseArr(array.slice(1), rev);// return func call with sliced array and rev
 };
 
 // 18. Create a new array with a given value and length.
